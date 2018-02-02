@@ -1,0 +1,6 @@
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+
+    sourceSets.main.java.srcDir 'src'
+}
