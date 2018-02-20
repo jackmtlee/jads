@@ -70,6 +70,7 @@ public class Solution {
             System.out.println("Variable " + varName + " not found...");
             return false;
         }
+        hasValue[var.getIndex()] = true;
         x[var.getIndex()] = var.isInteger() ? Math.round(value) : value;
         return true;
     }

@@ -35,7 +35,7 @@ public class Data {
 
     public String jdecFile = null, probFile = null, outFile = null, iniSolFile = null;
 
-    public Data.Loader loader = Loader.jads;
+    public Data.Loader loader = Loader.gurobi;
     public Data.Solver solver = Solver.gurobi;
     public Data.SubproblemParameters subproblem = new SubproblemParameters();
 
@@ -138,7 +138,8 @@ public class Data {
             JsonObject json = ( JsonObject ) parser.parse(bufferedReader);
 
             // loading problem description (model)
-            probFile = Paths.get(Paths.get(jdecFile).getParent().toString(), json.get("problem").getAsString()).toString();
+            String path = Paths.get(jdecFile).getParent() == null ? "" : Paths.get(jdecFile).getParent().toString();
+            probFile = Paths.get(path, json.get("problem").getAsString()).toString();
             if (json.has("initial_solution"))
                 iniSolFile = Paths.get(Paths.get(jdecFile).getParent().toString(), json.get("initial_solution").getAsString()).toString();
 
