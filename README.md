@@ -31,6 +31,54 @@ This project uses gradle. To generate the binaries, just run:
 
 The library file (jads.jar) will be generated.
 
+## Usage
+
+Decomposition-based heuristic algorithms:
+
+```
+Usage: ./jads.jar <input_file> <output_file> [options]
+
+    <input_file>  : path of input jdec file.
+    <output_file> : path of the output (solution) file.
+
+Options:
+
+    -sol <sol_file>    : Initial solution (default = NULL).
+
+    -seed <int>        : Random seed (default = 2).
+    -timelimit <double>: Time limit in minutes (default = INF).
+
+    -cbc               : Use CBC solver.
+    -cplex             : Use Cplex solver.
+    -gurobi            : Use Gurobi solver (default).
+    -scip              : Use SCIP solver.
+
+    -sollimit <int>    : Solution limit (default = INF).
+    -subtlimit <double>: Time limit in minutes for each subproblem (default = INF).
+```
+
+Dantzig-Wolfe' decomposition:
+
+```
+Usage: ./acg.jar <input_file> <output_file> [options]
+
+    <input_file>   : path of input model.
+    <output_file>  : path of the output (solution) file.
+
+Options:
+
+    -cplex             : Use Cplex simplex and MIP solver.
+    -gurobi            : Use Gurobi simplex and MIP solver (default).
+
+    -sollimit <int>    : Solution limit (default = INT_MAX).
+    -timelimit <int>   : Time limit in secs for each pricing (default = INT_MAX).
+    -timemult <double> : Time multiplier (default = 2.0).
+    -populate          : Populate (default = false).
+    -numpopulate <int> : Populate solutions limit (default = 20).
+
+    -onepricing        : Resolve the master after every pricing with new columns.
+```
+
 ## Known issues
 
 SCIP compatibility is currently very limited, and therefore we recommend using CPLEX or Gurobi.
